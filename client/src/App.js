@@ -1,22 +1,19 @@
 import React, {useEffect, useState} from 'react'
-import axios from 'axios'
+import Home from './pages/home.js';
+import Recipes from './pages/recipes.js';
+import axios from 'axios';
+import { Route, Routes } from 'react-router-dom';
 
-const App = () => {
-  const [users, setUsers] = useState([])
-  const getData = async() => {
-    const res = await axios.get('/api/users')
-    setUsers(res.data)
-  }
 
-  useEffect(() => {
-    getData()
-  }, [])
- 
+function App() {
   return (
     <div>
-      {users.map(u => <h4 key={u._id}>userName : {u.userName}</h4>)}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes" element={<Recipes />} />
+      </Routes>
     </div>
-  )
+  );
 }
 
 export default App
