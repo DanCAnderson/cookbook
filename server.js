@@ -1,17 +1,21 @@
 import connectDB from './server/config/db.js'
+
+import express from 'express'
+import bodyParser from 'body-parser'
+import dotenv  from 'dotenv'
+
 import userRoutes from './server/routes/user.js'
 import recipeRoutes from './server/routes/recipe.js'
-import express from 'express'
-import dotenv  from 'dotenv'
 
 //dotenv config
 dotenv.config()
 
 //connect database
-console.log(process.env.DB);
 connectDB(process.env.DB);
 
 const app = express();
+
+app.use(bodyParser.json());
 
 //Creating API for user
 app.use('/api/users', userRoutes);
